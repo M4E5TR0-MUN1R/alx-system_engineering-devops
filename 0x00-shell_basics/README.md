@@ -54,4 +54,30 @@ mkdir /tmp/my_first_directory
 mv /tmp/betty /tmp/my_first_directory
 </code></pre>
 
-## 8. 
+## 8. Delete the file betty.
+<ul>
+<li>The file betty is in /tmp/my_first_directory</li>
+</ul>
+<pre><code>
+#!/bin/bash
+rm /tmp/my_first_directory/betty
+</code></pre>
+
+## 9. Delete the directory my_first_directory that is in the /tmp directory.
+<pre><code>
+#!/bin/bash
+rm -r /tmp/my_first_directory
+</code></pre>
+
+## 10. Write a script that changes the working directory to the previous one.
+<pre><code>
+#!/bin/bash
+cd -
+</code></pre>
+
+## 11. Lists
+Write a script that lists all files (even ones with names beginning with a period character, which are normally hidden) in the current directory and the parent of the working directory and the /boot directory (in this order), in long format.
+<pre><code>
+#!/bin/bash
+ls -l -a . .. /boot
+</code></pre>
