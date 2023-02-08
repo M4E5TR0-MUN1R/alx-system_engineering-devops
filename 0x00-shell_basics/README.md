@@ -81,3 +81,23 @@ Write a script that lists all files (even ones with names beginning with a perio
 #!/bin/bash
 ls -l -a . .. /boot
 </code></pre>
+
+## 12. File type
+Write a script that prints the type of the file named iamafile. The file iamafile will be in the /tmp directory when we will run your script.
+<pre><code>
+#!/bin/bash
+file /tmp/iamafile
+</code></pre>
+
+## 13. symbols, and inhabit symbols 
+Create a symbolic link to /bin/ls, named __ls__. The symbolic link should be created in the current working directory.
+<pre><code>
+</code></pre>
+
+## 14. Copy HTML files
+Create a script that copies all the HTML files from the current working directory to the parent of the working directory, but only copy files that did not exist in the parent of the working directory or were newer than the versions in the parent of the working directory.
+<ul>
+  <li>You can consider that all HTML files have the extension .html</li>
+</ul>
+<pre><code>
+</code></pre>
