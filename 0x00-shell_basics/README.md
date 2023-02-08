@@ -91,7 +91,10 @@ file /tmp/iamafile
 
 ## 13. symbols, and inhabit symbols 
 Create a symbolic link to /bin/ls, named __ls__. The symbolic link should be created in the current working directory.
+<a href="https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767#:~:text=A%20symlink%20is%20a%20symbolic,directory%20in%20any%20file%20system."> Linux Symbolic Links Resource </a>
 <pre><code>
+#!/bin/bash
+ln -s /bin/ls ./__ls__
 </code></pre>
 
 ## 14. Copy HTML files
@@ -99,5 +102,15 @@ Create a script that copies all the HTML files from the current working director
 <ul>
   <li>You can consider that all HTML files have the extension .html</li>
 </ul>
+<p>
+yes|cp -ruv /from/* /to/. <br>
+yes - Answer yes to all the questions.<br>
+r - Recursive<br>
+u - update<br>
+v - Progress<br>
+NB: progess isn't needed in this task.<br>
+</p>
 <pre><code>
+#!/bin/bash
+cp -ru *.html ..
 </code></pre>
