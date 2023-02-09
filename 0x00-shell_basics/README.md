@@ -137,6 +137,7 @@ mkdir -p ./welcome/to/school
 </code></pre>
 
 ## 18. Write a command that lists all the files and directories of the current directory, separated by commas (,).
+### Resources.
 <a href="https://www.tecmint.com/ls-interview-questions/#:~:text=Yup!,comma%20when%20listing%20contents%20vertically.&text=When%20used%20in%20long%20listing%20format%2C%20switch%20%2Dm%20gets%20useless."> 10 Useful ‘ls’ Command Interview Questions </a> <br>
 <a href="https://www.mkssoftware.com/docs/man1/ls.1.asp"> ls Options </a> <br>
 <a href="https://www.digitalocean.com/community/tutorials/ls-command-in-linux-unix"> ls command in Linux/UNIX </a> <br>
@@ -156,6 +157,18 @@ ls -amvp
 
 ## 19. Create a magic file
 Create a magic file school.mgc that can be used with the command file to detect School data files. School data files always contain the string SCHOOL at offset 0.
+### Resources
+<a href="https://linux.die.net/man/5/magic"> magic(5) - Linux man page </a> <br>
+<a href="https://www.youtube.com/watch?v=fVOd3Dxifms"> VID: Magic File Format in Linux Unix Shell Explained and Simplified </a> <br>
+<a href="[https://www.youtube.com/watch?v=fVOd3Dxifms](https://www.baeldung.com/linux/file-mime-types)"> Introduction to File MIME Types </a> <br>
+### Syntax
 <pre><code>
-
+<OFFSET> <TAB_SPACE> <DATA_TYPE> <VALUE> <COMMENT>
+!:mime <MIME_FILE_TYPE>
 </code></pre>
+
+<pre><code>
+0 <TAB_SPACE> string SCHOOL thisisaschoolfile
+!:mime text/school
+</code></pre>
+
