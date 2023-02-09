@@ -163,12 +163,12 @@ Create a magic file school.mgc that can be used with the command file to detect 
 <a href="[https://www.youtube.com/watch?v=fVOd3Dxifms](https://www.baeldung.com/linux/file-mime-types)"> Introduction to File MIME Types </a> <br>
 ### Syntax
 <pre><code>
-<OFFSET> <TAB_SPACE> <DATA_TYPE> <VALUE> <COMMENT>
-!:mime <MIME_FILE_TYPE>
+(OFFSET) (TAB_SPACE) (DATA_TYPE) (VALUE) (COMMENT)
+!:mime (MIME_FILE_TYPE)
 </code></pre>
 
 <pre><code>
-0 <TAB_SPACE> string SCHOOL thisisaschoolfile
+0 (TAB_SPACE) string SCHOOL thisisaschoolfile
 !:mime text/school
 </code></pre>
 
