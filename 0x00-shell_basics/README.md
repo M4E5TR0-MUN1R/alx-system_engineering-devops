@@ -114,3 +114,61 @@ NB: progess isn't needed in this task.<br>
 #!/bin/bash
 cp -ru *.html ..
 </code></pre>
+
+## 15. Create a script that moves all files beginning with an uppercase letter to the directory /tmp/u.
+You can assume that the directory /tmp/u will exist when we will run your script
+<pre><code>
+#!/bin/bash
+mv [[:upper:]]* /tmp/u
+</code></pre>
+
+## 16. Create a script that deletes all files in the current working directory that end with the character ~.
+<pre><code>
+#!/bin/bash
+rm *~ 
+</code></pre>
+
+## 17. Create a script that creates the directories welcome/, welcome/to/ and welcome/to/school in the current directory.
+<a href="https://www.howtogeek.com/275069/how-to-create-multiple-subdirectories-with-one-linux-command/"> How to Create Multiple Subdirectories with One Linux Command </a> <br>
+You are only allowed to use two spaces (and lines) in your script, not more.
+<pre><code>
+#!/bin/bash
+mkdir -p ./welcome/to/school
+</code></pre>
+
+## 18. Write a command that lists all the files and directories of the current directory, separated by commas (,).
+### Resources.
+<a href="https://www.tecmint.com/ls-interview-questions/#:~:text=Yup!,comma%20when%20listing%20contents%20vertically.&text=When%20used%20in%20long%20listing%20format%2C%20switch%20%2Dm%20gets%20useless."> 10 Useful ‘ls’ Command Interview Questions </a> <br>
+<a href="https://www.mkssoftware.com/docs/man1/ls.1.asp"> ls Options </a> <br>
+<a href="https://www.digitalocean.com/community/tutorials/ls-command-in-linux-unix"> ls command in Linux/UNIX </a> <br>
+<a href="https://phoenixnap.com/kb/linux-ls-commands"> 19 Crucial Linux ls Commands to Know </a> <br>
+<ul>
+<li>Directory names should end with a slash (/) </li>
+<li>Files and directories starting with a dot (.) should be listed</li>
+<li>The listing should be alpha ordered, except for the directories . and .. which should be listed at the very beginning </li>
+<li>Only digits and letters are used to sort; Digits should come first </li>
+<li>You can assume that all the files we will test with will have at least one letter or one digit </li>
+<li>The listing should end with a new line </li>
+</ul>
+<pre><code>
+#!/bin/bash
+ls -amvp
+</code></pre>
+
+## 19. Create a magic file
+Create a magic file school.mgc that can be used with the command file to detect School data files. School data files always contain the string SCHOOL at offset 0.
+### Resources
+<a href="https://linux.die.net/man/5/magic"> magic(5) - Linux man page </a> <br>
+<a href="https://www.youtube.com/watch?v=fVOd3Dxifms"> VID: Magic File Format in Linux Unix Shell Explained and Simplified </a> <br>
+<a href="[https://www.youtube.com/watch?v=fVOd3Dxifms](https://www.baeldung.com/linux/file-mime-types)"> Introduction to File MIME Types </a> <br>
+### Syntax
+<pre><code>
+(OFFSET) (TAB_SPACE) (DATA_TYPE) (VALUE) (COMMENT)
+!:mime (MIME_FILE_TYPE)
+</code></pre>
+
+<pre><code>
+0 (TAB_SPACE) string SCHOOL thisisaschoolfile
+!:mime text/school
+</code></pre>
+
