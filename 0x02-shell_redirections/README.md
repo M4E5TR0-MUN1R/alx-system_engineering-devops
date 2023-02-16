@@ -289,36 +289,107 @@ The command cuts parts of a line by field, delimiter, byte position, and charact
 cut -d ":" -f1,6 /etc/password | sort
 ```
 
-Remaining Part!!
-
-### 23. Display the content of the /etc/passwd file.
+### 23. Write a command that finds all empty files and directories in the current directory and all sub-directories.
+* Only the names of the files and directories should be displayed (not the entire path)
+* Hidden files should be listed
+* One file name per line
+* The listing should end with a new line
+* You are not allowed to use `basename`, `grep`, `egrep`, `fgrep` or `rgrep`
 ```
 #!/bin/bash
-cat /etc/passwd
+find . -type f,d -empty -print | rev | cut -d "/" -f 1 | rev
 ```
+Explanation:<br>
+find all (-empty) files in current directory (.), which are of both file and directory type (-type f,d) then (-print) their paths,<br>
+after that reverse the paths so that we get the file and directory names first before anything else. <br>
+we then use cut and backslash ("/") the delimiter to take the first field only, we then reverse th output again to obtain file or directory name.
 
-### 24. Display the content of /etc/passwd and /etc/hosts
-* [The cat and tac command](https://www.geeksforgeeks.org/cat-command-in-linux-with-examples/)
-To view contents of a file preceding with line numbers. `cat -n filename`
+### 24. Write a script that lists all the files with a `.gif` extension in the current directory and all its sub-directories.
+* [9 Practical Examples of the cut Command in Linux](https://www.makeuseof.com/cut-command-examples-linux/)
+* Hidden files should be listed
+* Only regular files (not directories) should be listed
+* The names of the files should be displayed without their extensions
+* The files should be sorted by byte values, but case-insensitive (file aaa should be listed before file bbb, file .b should be listed before file a, and file Rona should be listed after file jay)
+* One file name per line
+* The listing should end with a new line
+* You are not allowed to use `basename`, `grep`, `egrep`, `fgrep` or `rgrep`
+To Extract Text From Start or End Positions <br>
+Use the -cn- option to extract text from nth character onwards to the end of the line, where n is the index of a character in the string.
 ```
 #!/bin/bash
-cat /etc/passwd /etc/hosts
+find . -type f -iname "*.gif" | sort | rev | cut -d "." -f 2- | rev | tr -d  "/" | cut -c 2-
+```
+or 
+```
+find . -name "*.gif" -type f -printf "%f\n" | rev | cut -d. -f2- | rev | LC_ALL=C sort -f
 ```
 
-### 25. Display the last 10 lines of /etc/passwd
-Tail command is the complementary of head command.The tail command, as the name implies, print the last N number of data of the given input. 
-By default it prints the last 10 lines of the specified files. 
-If more than one file name is provided then data from each file is precedes by its file name
+### 25. Acrostic
+An acrostic is a poem (or other form of writing) in which the first letter (or syllable, or word) of each line (or paragraph, or other recurring feature in the text) spells out a word, message or the alphabet. 
+The word comes from the French acrostiche from post-classical Latin acrostichis). 
+As a form of constrained writing, an acrostic can be used as a mnemonic device to aid memory retrieval.<a href="https://en.wikipedia.org/wiki/Acrostic"> Read more </a>.
+Create a script that decodes acrostics that use the first letter of each line.
+* The ‘decoded’ message has to end with a new line
+* You are not allowed to use `basename`, `grep`, `egrep`, `fgrep` or `rgrep`
 ```
 #!/bin/bash
-tail /etc/passwd
+cut -c 1 | paste -s -d ''
 ```
 
-### 26. Display the first 10 lines of /etc/passwd
-Head command is the complementary of Tail command. The head command, as the name implies, print the top N number of data of the given input.
-By default, it prints the first 10 lines of the specified files. 
-If more than one file name is provided then data from each file is preceded by its file name. 
+### 26. Write a script that parses web servers logs in TSV format as input and displays the 11 hosts or IP addresses which did the most requests.
+* Order by number of requests, most active host or IP at the top
+* You are not allowed to use grep, egrep, fgrep or rgrep
+Format:
+```
+host    When possible, the hostname making the request. Uses the IP address if the hostname was unavailable.
+logname Unused, always -
+time    In seconds, since 1970
+method  HTTP method: GET, HEAD, or POST
+url Requested path
+response    HTTP response code
+bytes   Number of bytes in the reply
+```
+Here is an example with one day of logs of the NASA website (1995).
+```
+julien@ubuntu:/tmp/0x02$ wget https://s3.amazonaws.com/alx-intranet.hbtn.io/public/nasa_19950801.tsv
+--2022-03-08 11:08:26--  https://s3.amazonaws.com/alx-intranet.hbtn.io/public/nasa_19950801.tsv
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.217.171.144
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.217.171.144|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 782913 (765K) [binary/octet-stream]
+Saving to: ‘nasa_19950801.tsv’
+
+nasa_19950801.tsv   100%[===================>] 764.56K  --.-KB/s    in 0.008s
+
+2022-03-08 11:08:26 (98.4 MB/s) - ‘nasa_19950801.tsv’ saved [782913/782913]
+
+julien@ubuntu:/tmp/0x02$ head nasa_19950801.tsv
+host    logname time    method  url     response        bytes
+in24.inetnebr.com       -       807249601       GET     /shuttle/missions/sts-68/news/sts-68-mcc-05.txt 200     1839
+uplherc.upl.com -       807249607       GET     /       304     0
+uplherc.upl.com -       807249608       GET     /images/ksclogo-medium.gif      304     0
+uplherc.upl.com -       807249608       GET     /images/MOSAIC-logosmall.gif    304     0
+uplherc.upl.com -       807249608       GET     /images/USA-logosmall.gif       304     0
+ix-esc-ca2-07.ix.netcom.com     -       807249609       GET     /images/launch-logo.gif 200     1713
+uplherc.upl.com -       807249610       GET     /images/WORLD-logosmall.gif     304     0
+slppp6.intermind.net    -       807249610       GET     /history/skylab/skylab.html     200     1687
+piweba4y.prodigy.com    -       807249610       GET     /images/launchmedium.gif        200     11853
+julien@ubuntu:/tmp/0x02$ ./103-the_biggest_fan < nasa_19950801.tsv 
+www-relay.pa-x.dec.com
+piweba3y.prodigy.com
+www.thyssen.com
+130.110.74.81
+ix-min1-02.ix.netcom.com
+uplherc.upl.com
+reggae.iinet.net.au
+seigate.sumiden.co.jp
+ircgate1.rcc-irc.si
+s150.phxslip4.indirect.com
+torben.dou.dk
+julien@ubuntu:/tmp/0x02$ 
+```
+Task Code:
 ```
 #!/bin/bash
-head /etc/passwd
+tail  -n +2 | cut -f -1 | sort -k 1 | uniq -c | sort -rnk 1 | head -n 11 | rev | cut -d ' ' -f -1 | rev
 ```
